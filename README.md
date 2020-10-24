@@ -1,4 +1,8 @@
-# keras-yolo3
+# IfM Hackathon 2020
+
+useful information from keras-yolo
+
+# keras-yolo3 readme
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
