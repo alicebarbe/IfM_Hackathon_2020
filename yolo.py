@@ -99,7 +99,7 @@ class YOLO(object):
                 score_threshold=self.score, iou_threshold=self.iou)
         return boxes, scores, classes
 
-    def detect_image(self, image):
+    def detect_bounding_boxes(self, image):
         start = timer()
 
         if self.model_image_size != (None, None):
@@ -116,13 +116,18 @@ class YOLO(object):
         image_data /= 255.
         image_data = np.expand_dims(image_data, 0)  # Add batch dimension.
 
-        out_boxes, out_scores, out_classes = self.sess.run(
+        return self.sess.run(
             [self.boxes, self.scores, self.classes],
             feed_dict={
                 self.yolo_model.input: image_data,
                 self.input_image_shape: [image.size[1], image.size[0]],
                 K.learning_phase(): 0
             })
+
+
+    def detect_image(self, image):
+
+        out_boxes, out_scores, out_classes = self.detect_bounding_boxes(image)
 
         print('Found {} boxes for {}'.format(len(out_boxes), 'img'))
 
@@ -162,9 +167,7 @@ class YOLO(object):
             draw.text(text_origin, label, fill=(0, 0, 0), font=font)
             del draw
 
-        end = timer()
-        print(end - start)
-        return image
+
 
     def close_session(self):
         self.sess.close()

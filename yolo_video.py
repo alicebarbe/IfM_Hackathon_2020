@@ -13,6 +13,7 @@ def detect_img(yolo):
             continue
         else:
             r_image = yolo.detect_image(image)
+            r_image.save(img.split(".")[0] + "_out."+img.split(".")[1])
             r_image.show()
     yolo.close_session()
 
