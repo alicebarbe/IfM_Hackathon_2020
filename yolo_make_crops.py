@@ -51,5 +51,7 @@ def make_individual_product_database(yolo, image_paths):
     yolo.close_session()
 
 if __name__ == "__main__":
-    image_paths = []
+
+    train_folder
+    train_image_paths =
     make_individual_product_database(YOLO())
