@@ -1,20 +1,16 @@
-"""
-Largely copied from https://www.kaggle.com/waltermaffy/fruit-classification-pca-svm-knn-decision-tree/
-Requires the fruit-360 dataset: https://www.kaggle.com/moltean/fruits
-"""
 import numpy as np 
 import cv2
 import glob
 import os
 import matplotlib.pyplot as plt
 import string
-#from mlxtend.plotting import plot_decision_regions
-#from mpl_toolkits.mplot3d import Axes3D
+from mlxtend.plotting import plot_decision_regions
+from mpl_toolkits.mplot3d import Axes3D
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
-#from sklearn.neighbors import KNeighborsClassifier
-#from sklearn.tree import DecisionTreeClassifier 
-#from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier 
+from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.utils.multiclass import unique_labels
 from sklearn import metrics
 from sklearn.svm import SVC
@@ -24,9 +20,9 @@ dim = 100
 def getYourFruits(fruits, data_type, print_n=False, k_fold=False):
     images = []
     labels = []
-    val = ['Training', 'Test']
+    val = ['Training', 'Testing']
     if not k_fold:
-        path = "./fruits-360/" + data_type + "/"
+        path = "./apples_dataset_new/" + data_type + "/"
         for i,f in enumerate(fruits):
             p = path + f
             j=0
@@ -44,7 +40,7 @@ def getYourFruits(fruits, data_type, print_n=False, k_fold=False):
         return images, labels
     else:
         for v in val:
-            path = "./fruits-360/" + v + "/"
+            path = "./apples_dataset_new/" + v + "/"
             for i,f in enumerate(fruits):
                 p = path + f
                 j=0
@@ -61,7 +57,7 @@ def getYourFruits(fruits, data_type, print_n=False, k_fold=False):
     
 def getAllFruits():
     fruits = []
-    for fruit_path in glob.glob("./fruits-360/Training/*"):
+    for fruit_path in glob.glob("./apples_dataset_new/Training/*"):
         fruit = fruit_path.split("/")[-1]
         fruits.append(fruit)
     return fruits
@@ -245,15 +241,14 @@ def showVariance(X_train):
     plt.show()
     
 
-
 if __name__ == "__main__": 
     
     #Choose your Fruits
-    fruits = ['Apple Golden 3' , 'Apple Granny Smith'] #Binary classification
+    fruits = ['Apple' , 'Damaged Apple'] #Binary classification
     
     #Get Images and Labels 
     X_t, y_train =  getYourFruits(fruits, 'Training', print_n=True, k_fold=False)
-    X_test, y_test = getYourFruits(fruits, 'Test', print_n=True, k_fold=False)
+    X_test, y_test = getYourFruits(fruits, 'Testing', print_n=True, k_fold=False)
     
     #Get data for k-fold
     #X,y = getYourFruits(fruits, '', print_n=True, k_fold=True)
@@ -333,3 +328,4 @@ if __name__ == "__main__":
     precision = metrics.accuracy_score(test_predictions, y_test) * 100
     print("Accuracy with SVM considering only first 2PC: {0:.2f}%".format(precision))
     '''
+
