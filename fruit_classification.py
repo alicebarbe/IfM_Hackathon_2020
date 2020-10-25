@@ -14,6 +14,7 @@ from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.utils.multiclass import unique_labels
 from sklearn import metrics
 from sklearn.svm import SVC
+import pickle
 
 dim = 100
 
@@ -239,6 +240,9 @@ def showVariance(X_train):
     ax.autoscale_view()
 
     plt.show()
+
+def classify_image():
+
     
 
 if __name__ == "__main__": 
@@ -299,7 +303,11 @@ if __name__ == "__main__":
     # Linear SVM
     
     svm = SVC(gamma='auto', kernel='linear', probability=True)
-    svm.fit(X_train, y_train) 
+    svm.fit(X_train, y_train)
+
+    # save the model
+    pickle.dump(svm, "svm_model.pk")
+
     y_pred = svm.predict(X_test)
     
     # Evaluation
