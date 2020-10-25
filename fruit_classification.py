@@ -8,13 +8,13 @@ import glob
 import os
 import matplotlib.pyplot as plt
 import string
-from mlxtend.plotting import plot_decision_regions
-from mpl_toolkits.mplot3d import Axes3D
+#from mlxtend.plotting import plot_decision_regions
+#from mpl_toolkits.mplot3d import Axes3D
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.tree import DecisionTreeClassifier 
-from sklearn.model_selection import train_test_split, cross_val_score
+#from sklearn.neighbors import KNeighborsClassifier
+#from sklearn.tree import DecisionTreeClassifier 
+#from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.utils.multiclass import unique_labels
 from sklearn import metrics
 from sklearn.svm import SVC

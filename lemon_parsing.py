@@ -21,7 +21,7 @@ with open(r"./lemon-dataset/annotations/instances_default.json", "r") as read_fi
 images_df = pd.DataFrame(data['images'])
 annotations_df = pd.DataFrame(data['annotations'])
 df = pd.concat([images_df, annotations_df])
-df = df[["id", "file_name", "category_id". "image_id"]]
+df = df[["id", "file_name", "category_id", "image_id"]]
 df = df[~df["file_name"].isna()]  # remove rows in dataframe with nan filename
 df["file_name"] = df["file_name"].apply(lambda i: os.path.normpath(i))
 
