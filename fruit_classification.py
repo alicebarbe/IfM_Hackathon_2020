@@ -1,3 +1,7 @@
+"""
+Largely copied from https://www.kaggle.com/waltermaffy/fruit-classification-pca-svm-knn-decision-tree/
+Requires the fruit-360 dataset: https://www.kaggle.com/moltean/fruits
+"""
 import numpy as np 
 import cv2
 import glob

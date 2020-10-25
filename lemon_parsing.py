@@ -3,6 +3,8 @@
 Created on Sun Oct 25 03:24:14 2020
 
 @author: Alice
+
+to use on the lemon dataset: https://github.com/softwaremill/lemon-dataset/
 """
 
 import json
